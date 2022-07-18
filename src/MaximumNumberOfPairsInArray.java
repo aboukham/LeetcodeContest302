@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Prob1 {
+public class MaximumNumberOfPairsInArray {
     public static int[] countPairs(Collection<Integer> values){
         int countPairs = 0;
         int countNonPairs = 0;
@@ -16,12 +16,8 @@ public class Prob1 {
         Map<Integer, Integer> map = new HashMap<>();
 
         for (int i = 0; i < nums.length; i++){
-            if (map.containsKey(nums[i])){
-                int value = map.get(nums[i]) + 1;
-                map.put(nums[i], value);
-            }else {
-                map.put(nums[i], 1);
-            }
+            if (!map.containsKey(nums[i])) map.put(nums[i], 1);
+            else map.put(nums[i], map.get(nums[i]) + 1);
         }
         return countPairs(map.values());
     }
